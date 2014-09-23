@@ -1,6 +1,6 @@
 Netbeans CodeIgniter autocompleter v1.0
 ===========================
-Netbeans 7.x - 8.x autocomplete / auto suggestion for CodeIgniter
+Netbeans 7.x - 8.x autocomplete / auto suggestion for CodeIgniter 2.x
 
 
 For use<br>
