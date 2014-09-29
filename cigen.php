@@ -1,11 +1,11 @@
 <html>
     <head>
+        
         <?php
 
         function prep_path($path) {
             return str_replace("\\", "/", $path);
         }
-
         function preVar($param, $exit = false) {
             echo '<pre>';
             var_dump($param);
@@ -13,6 +13,7 @@
             if ($exit)
                 exit;
         }
+
 
         function directory_map($source_dir, $directory_depth = 0, $hidden = FALSE) {
             if ($fp = @opendir($source_dir)) {
@@ -77,12 +78,18 @@
         $currentDir = NULL;
         $currentDirA = explode("/", $absPath);
         $currentDir = @end($currentDirA);
+
         ?>
-        <title><?php echo ($currentDir != NULL) ? $currentDir . ' - ' : ''; ?> CodeIgniter - AUTO-TEMPLATE</title>
+        <title><?php echo ($currentDir != NULL) ? $currentDir . ' - ' : ''; echo (isset($_GET['autorefresh']) && intval($_GET['autorefresh']) > 0) ? 'R:'.$_GET['autorefresh'].' -' : ''; ?> CodeIgniter - AUTO-TEMPLATE</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="description" content="NetBeans CodeIgniter autocompleter"/>
         <meta name="keywords" content="netbeans ci autocompleter" />
+        
         <meta name="author" content="Tomas Kaplar"/>
+        <?php if (isset($_GET['autorefresh']) && intval($_GET['autorefresh']) > 0) { ?>
+            <meta http-equiv="refresh" content="<?php echo intval($_GET['autorefresh']); ?>"> 
+        <?php }
+        ?>
         <style type="text/css">
             body {
                 font-family: "Courier New", Courier, monospace;
@@ -94,6 +101,7 @@
         <link rel="shortcut icon" href="data:image/png;base64,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"/>
     </head>
     <?php
+    $default_auto_refresh = 30;
     $this_file_name = pathinfo(__FILE__, PATHINFO_BASENAME);
     $index_file_name = 'index.php';
     $index_file = FALSE;
@@ -125,7 +133,7 @@
         $ci_path = prep_path('system' . DIRECTORY_SEPARATOR . 'core');
 
         echo 'CodeIgniter core path:  ' . $ci_path . '<br>';
-        echo str_repeat("-", 150) . '<br>';
+        echo str_repeat("-", 100) . '<br>';
         echo '<br>';
 
 
@@ -222,6 +230,7 @@ function get_instance() {}
  function query() {}
 };
 ';
+       
         $output .= "/** \n\n";
         $output.= substr(addClassForText($dir_model, '', $skipThisFiles), 0, -2);
         $output.='
@@ -245,9 +254,17 @@ function get_instance() {}';
             echo 'Operation Error';
         }
 
-       
+        echo '<br><br>' . str_repeat("-", 100) . '<br>';
+        ?>
+        <form action="<?php echo $this_file_name; ?>" method="get">
+            <input type="number" name="autorefresh" value="<?php echo (isset($_GET['autorefresh']) && intval($_GET['autorefresh']) > 0) ? intval($_GET['autorefresh']) : $default_auto_refresh ?>" style="width: 50px;"/> s
+            <input type="submit" value="set Auto Refresh"/>
+        </form>
+        <?php
     } else {
         die('Cannot get application path from ' . $index_file_name . '.');
     }
     ?>
+
+
 </html>
