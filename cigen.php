@@ -228,6 +228,23 @@ function get_instance() {}
   * @return CI_DB_mysql_result
   */
  function query() {}
+ 
+   /**
+  * Execute the query
+  *
+  * Accepts an SQL string as input and returns a result object upon
+  * successful execution of a "read" type query.  Returns boolean TRUE
+  * upon successful execution of a "write" type query. Returns boolean
+  * FALSE upon failure, and if the $db_debug variable is set to TRUE
+  * will raise an error.
+  *
+  * @access public
+  * @param string An SQL query string
+  * @param array An array of binding data
+  * @return CI_DB_mysql_result
+  */
+ function get() {}
+ 
 };
 ';
        
